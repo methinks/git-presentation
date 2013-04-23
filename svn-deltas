@@ -1,0 +1,30 @@
+﻿blockdiag {
+	default_fontsize = 22;
+	
+	class rev [color = orange];
+	class file [color = "#53CCF5", shape = roundedbox];
+	class delta [shape = roundedbox];
+	class olddelta [shape = roundedbox, style=dashed, color="#ACFAC1"];
+	
+	R1[label="revision 1", class="rev"];
+	R2[label="revision 2", class="rev"];
+	R3[label="revision 3", class="rev"];
+	R4[label="revision 4", class="rev"];
+	
+	R1 -> R2 -> R3 -> R4;
+	
+	F1[label = "file 1", class="file"];
+	F3[label = "file 2", class="file"];
+	
+	F1D1[label = "Δ1", class="delta"];
+	F1O1[label = "Δ1", class="olddelta"];
+	F1D2[label = "Δ2", class="delta"];
+	
+	E [shape = roundedbox, label = "no file yet", style="dashed"];
+	F3D1[label = "Δ1", class="delta"];
+	F3O1[label = "Δ1", class="olddelta"];
+	
+	F1 -> F1D1 -> F1O1 -> F1D2;
+	E -> F3 [style="none"];
+	F3 -> F3D1 -> F3O1;
+}

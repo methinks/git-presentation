@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -12,101 +12,374 @@
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic" rel="stylesheet" />
 
     <link href="impress.css" rel="stylesheet" />
-    
+	<script src="jquery-1.9.1.min.js"></script>	
+
     <link rel="shortcut icon" href="favicon.png" />
 </head>
 
 <body>
-<div id="impress" data-transition-duration="600">
-	<div id="start" class="step" data-x="-2320" data-y="-1785" data-scale="0.15">
+<div id="impress" data-transition-duration="1100">
+	<div id="start" class="step intro" data-x="-2318" data-y="-1773" data-z="1" data-scale="0.16">
+		<img src="roche_logo.png" />
 	</div>
 	
-	<div class="step slide" data-x="-2000" data-y="-1500">
-		<q>Adam Parchimowicz
+	<div id="intro" class="step slide intro" data-x="-2000" data-y="-1500">
+		<q><br/><br/>Git workshop<br/>Adam Parchimowicz</q>
+	</div> 
+	
+	<div id="svngitmercurial" class="step svn" data-x="-3300" data-y="-500" data-scale="1.2" data-rotate="180">
+		<p>SVN / Git / Mercurial</p>
+	</div>
+	
+	<div class="step slide svn" data-x="-3250" data-y="-1325" data-scale="1.5" data-rotate="180">
+		<q>SVN, apart from being centralized, has a couple important characteristics:
+		<ul>
+			<li>stores changesets in deltas</li>
+			<li>poor branching model</li>
+			<li>dead simple</li>
+		</ul>
+		</q>
+	</div>
+	
+	<div class="step imgslide svn" data-x="-3630" data-y="-2120" data-scale="0.7" data-rotate="0">
+		<q>Rough representation of SVN and Mercurial storage model</q>
+		<div><img src="svn-deltas.png" /></div>
+	</div>
+	
+	<div class="step imgslide svn" data-x="-2880" data-y="-2120" data-scale="0.7" data-rotate="0">
+		<q>Rough representation of Git storage model</q>
+		<div><img src="git-repo-model.png" /></div>
+	</div>
+	
+	<div class="step slide svn" data-x="-2880" data-y="-2650" data-scale="0.7" data-rotate="180">
+		<q>Branching model.
+		<ul>
+			<li>In SVN branch is just a folder copy</li>
+			<li>Git has lightweight local branches and tracking branches</li>
+			<li>Mercurial has annotated branches and bookmarks</li>
+		</ul>
+		</q>
+	</div>
+	
+	<div class="step slide svn" data-x="-3630" data-y="-2650" data-scale="0.7" data-rotate="0">
+		<q>Merging changes between branches - ever tried this in SVN?</q>
+		<q>Branch merging in SVN is a nightmare. In <strong>Git</strong> and <strong>Mercurial</strong> it just works!</q>
+	</div>
+	
+	<div id="commandsComparison" class="step hideable svn" data-x="-3630" data-y="-3180" data-scale="0.7" data-rotate="0">
+		<table style="width: 900px;">
+		<tbody>
+		<tr style="border-bottom: 1px solid black;">
+		<th>
+		<h4><strong>Subversion (SVN)</strong></h4>
+		</th>
+		<th>
+		<h4><strong>Mercurial (Hg)</strong></h4>
+		</th>
+		<th>
+		<h4><strong>Git</strong></h4>
+		</th>
+		</tr>
+		<tr style="border-bottom: 1px solid lightgrey;">
+		<td>svn add</td>
+		<td><strong>hg add</strong></td>
+		<td><strong>git add</strong></td>
+		</tr>
+		<tr style="border-bottom: 1px solid lightgrey;">
+		<td>svn blame</td>
+		<td><strong>hg blame</strong></td>
+		<td><strong>git blame</strong></td>
+		</tr>
+		<tr style="border-bottom: 1px solid lightgrey;">
+		<td>svn cat</td>
+		<td><strong>hg cat</strong></td>
+		<td>git show</td>
+		</tr>
+		<tr style="border-bottom: 1px solid lightgrey;">
+		<td>svn checkout</td>
+		<td>hg clone</td>
+		<td>git clone</td>
+		</tr>
+		<tr style="border-bottom: 1px solid lightgrey;">
+		<td>svn commit</td>
+		<td>hg commit ; hg push</td>
+		<td>git commit -a ; git push</td>
+		</tr>
+		<tr style="border-bottom: 1px solid lightgrey;">
+		<td>svn delete/remove</td>
+		<td><strong>hg remove</strong></td>
+		<td>git rm</td>
+		</tr>
+		<tr style="border-bottom: 1px solid lightgrey;">
+		<td>svn diff</td>
+		<td><strong>hg diff</strong></td>
+		<td><strong>git diff</strong>, git diff --cached</td>
+		</tr>
+		<tr style="border-bottom: 1px solid lightgrey;">
+		<td>svn help</td>
+		<td><strong>hg help</strong></td>
+		<td><strong>git help</strong></td>
+		</tr>
+		<tr style="border-bottom: 1px solid lightgrey;">
+		<td>svn log</td>
+		<td><strong>hg log</strong></td>
+		<td><strong>git log</strong></td>
+		</tr>
+		<tr style="border-bottom: 1px solid lightgrey;">
+		<td>svn revert</td>
+		<td><strong>hg revert</strong></td>
+		<td>git checkout -f</td>
+		</tr>
+		<tr style="border-bottom: 1px solid lightgrey;">
+		<td>svn status</td>
+		<td><strong>hg status</strong></td>
+		<td><strong>git status</strong></td>
+		</tr>
+		<tr style="border-bottom: 1px solid lightgrey;">
+		<td>svn update</td>
+		<td>hg pull --update</td>
+		<td>git pull</td>
+		</tr>
+		<tr>
+		<td>svn move/rename</td>
+		<td><strong>hg move/rename</strong></td>
+		<td>git mv</td>
+		</tr>
+		<tr>
+		<td>?</td>
+		<td>hg backout</td>
+		<td>git revert</td>
+		</tr>
+		</tbody>
+		</table>
+		<p>Source: <a href="http://blogs.atlassian.com/2012/02/mercurial-vs-git-why-mercurial/">http://blogs.atlassian.com/2012/02/mercurial-vs-git-why-mercurial/</a> + edits</p>
+	</div>
+	
+	<div id="git" class="step git" data-x="-4500" data-y="-1750" data-scale="2" data-rotate="90">
+		Git theory
+	</div>
+	
+	<div class="step imgslide git" data-x="-4700" data-y="-800" data-scale="0.4" data-rotate="0">
+		<q>One important fact - GIT is DAG.
+		</q><br/>
+		<img src="dag.png" />
+	</div>
+
+	<div class="step imgslide git" data-x="-4300" data-y="-800" data-scale="0.4" data-rotate="0">
+		<q>Git's commit is an object that points to its tree. This tree itself points to other trees or blobs.
+		</q>
+		<img src="git-commit-internal.png" />
+	</div>
+	
+	<div class="step imgslide git" data-x="-4300" data-y="-500" data-scale="0.4" data-rotate="0">
+		<q>Git's repo is a bunch of objects and pointers:
+			<ul class="small">
+				<li>head and branch are pointers</li>
+				<li>commit is an object that points to its parents</li>
+			</ul>
+		</q>
+		<img src="git-repo-commits.png" />
+	</div>
+	
+	<div id="just-graph" class="step imgslide git" data-x="-4300" data-y="-500" data-scale="0.4" data-rotate="0">
+		<img class="first" src="git-repo-commits.png" />
+	</div>
+	
+	<div id="graph-w-tree" class="step imgslide git" data-x="-4300" data-y="-500" data-scale="0.4" data-rotate="0">
+		<img src="git-repo-commits-w-tree.png" />
+	</div>
+
+	<div class="step imgslide git" data-x="-4700" data-y="-500" data-scale="0.4" data-rotate="0">
+		<img src="git-full-tree.png" style="float: right; margin: 150px 50px 0 0; height: 400px;" />
+	</div>
+	<div id="fullTreeWithRefs" class="step imgslide git" data-x="-4700" data-y="-500" data-scale="0.4" data-rotate="0">
+		<img src="git-full-tree-w-refs.png" style="float: right; margin: 150px 50px 0 0; height: 400px;" />
+	</div>
+	
+	<div class="step slide git" data-x="-4700" data-y="-200" data-scale="0.4" data-rotate="0">
+		<q>
+			In Git a commit is identified by a SHA1 of its contents and parent(s). Therefore it is immutable.
+		</q>
+		<q>
+			The same applies to all Git's objects. This makes up for great consistency!
+		</q>
+	</div>
+	
+	<div class="step slide git" data-x="-4300" data-y="-200" data-scale="0.4" data-rotate="0">
+		<q>
+			Rewriting history
 			<ul>
-				<li>developer for > 7 years</li>
-				<li>passionate about new-tech</li>
-				<li>java nerd</li>
-				<li>fan of cheesy jokes</li>
+				<li>You can ammend last commit.</li>
+				<li>Rebase instead of merging.</li>
+				<li>Interactive rebase power!</li>
+			</ul>
+		</q>
+	</div>
+
+	<div id="git1" class="step slide gitimg" data-x="-4300" data-y="100" data-scale="0.4" data-rotate="0">
+		<q>Repo:</q>
+		<img src="Git1.png" />
+	</div>
+	<div id="git2"class="step slide gitimg" data-x="-4300" data-y="100" data-scale="0.4" data-rotate="0">
+		<q>git reset b4e6fc</q>
+		<img src="Git2.png" />
+	</div>
+	<div id="git3" class="step slide gitimg" data-x="-4300" data-y="100" data-scale="0.4" data-rotate="0">
+		<q>Reflog still has a pointer!</q>
+		<img src="Git3.png" />
+	</div>
+	<div id="git4" class="step slide gitimg" data-x="-4300" data-y="100" data-scale="0.4" data-rotate="0">
+		<q>git branch branch2 273a31</q>
+		<img src="Git4.png" />
+	</div>
+	
+	<div class="step slide" data-x="-4700" data-y="100" data-scale="0.4" data-rotate="0">
+		<q>
+			Git powertools:
+			<ul>
+				<li>stash</li>
+				<li>reflog</li>
+				<li>cherrypick</li>
+				<li>bisect</li>
+				<li>rebase -i</li>
+			</ul>
+		</q>
+	</div>
+
+	<div id="reset1" class="reset step slide" data-x="-4300" data-y="400" data-scale="0.4" data-rotate="0">
+		<q>Behold the power of reset!</q>
+		<img src="ex4.png" />
+	</div>
+	<div id="reset2" class="reset step slide" data-x="-4300" data-y="400" data-scale="0.4" data-rotate="0">
+		<q>Edit file</q>
+		<img src="ex5.png" />
+	</div>
+	<div id="reset3" class="reset step slide" data-x="-4300" data-y="400" data-scale="0.4" data-rotate="0">
+		<q>Stage</q>
+		<img src="ex6.png" />
+	</div>
+	<div id="reset4" class="reset step slide" data-x="-4300" data-y="400" data-scale="0.4" data-rotate="0">
+		<q>Commit</q>
+		<img src="ex7.png" />
+	</div>
+
+	<div id="reset5" class="reset step slide" data-x="-4700" data-y="400" data-scale="0.4" data-rotate="0">
+		<q>git reset --soft</q>
+		<img src="reset-soft.png" />
+	</div>
+	<div id="reset6" class="reset step slide" data-x="-4700" data-y="400" data-scale="0.4" data-rotate="0">
+		<q>git reset</q>
+		<img src="reset-mixed.png" />
+	</div>
+	<div id="reset7" class="reset step slide" data-x="-4700" data-y="400" data-scale="0.4" data-rotate="0">
+		<q>git reset --hard</q>
+		<img src="reset-hard.png" />
+	</div>
+	
+	<div id="mercurial" class="step mercurial" data-x="-1550" data-y="2100" data-scale="1.8" data-rotate="180">
+		Mercurial - strengths and weaknesses
+	</div>
+	
+	<div class="step imgslide mercurial" data-x="-740" data-y="1600" data-scale="0.4" data-rotate="180">
+		<q>
+			Key differences in commits structure:
+			<ul class="small">
+				<li>anonymous heads (no branch pointers)</li>
+				<li>named branches</li>
+				<li>no octopus merge</li>
+			</ul>
+		</q>
+		<img src="hg-repo-commits.png" />
+	</div>
+	
+	<div class="step imgslide mercurial" data-x="-1150" data-y="1600" data-scale="0.4" data-rotate="180">
+		<q>
+		<ul class="small">
+			<li>flat manifest file</li>
+			<li>manifest entry points to a revision in revlog</li>
+			<li>revlog stores all file's revision</li>
+			<li>revlog's index shows revision's length and offset</li>
+		</ul>
+		</q>
+		<img src="hg-changeset-internal.png" />
+	</div>
+	
+	<div class="step slide mercurial" data-x="-1560" data-y="1600" data-scale="0.4" data-rotate="180">
+		<q>
+			In Mercurial each file is stored in a single revlog file (+index file).<br/>
+			Building file revision - log(1):
+			<ul>
+				<li>finding a revision info in index</li>
+				<li>reading length and offset in revlog</li>
+				<li>adding up a few deltas</li>
 			</ul>
 		</q>
 	</div>
 	
-    <div class="step slide" data-x="-1000" data-y="-1500">
-        <q><b>Git / Mercurial</b> -  two rival DVCS out there since <b>2005</b>.</q>
-		<q>In almost 8 years some <b>facts</b> are already <b>myths</b>.</q>
-    </div>
+	<div class="step slide mercurial" data-x="-1970" data-y="1600" data-scale="0.4" data-rotate="180">
+		<q>
+			- A changeset and revlog entry is identified by a SHA-1 string (called nodeid).
+			Revlogs are append only.
+			<br/>
+			- Basic history edition - hg rollback undoes last operation (i.e. commit or pull).
+			This cannot be undone...
+			<br/>
+			- hg commit --amend since mid-2012
+		</q>
+	</div>
+	
+	<div id="localRevId" class="step slide mercurial" data-x="-1970" data-y="1270" data-scale="0.4" data-rotate="180">
+		<q>
+			Apart from global SHA-1 nodeid, each changeset has a sequential local revision id.
+			This does <strong>not</strong> propagate cross-repo and can be different for each user...
+		</q>
+	</div>
+	
+	<div id="wtf2" class="step" data-x="-1510" data-y="-140" data-rotate="90" data-scale="3.2">
+	</div>
+	
+	<div id="mqExt" class="step slide mercurial" data-x="-1560" data-y="1270" data-scale="0.4" data-rotate="180">
+		<q>
+			MQ extension: index and "history edit":
+			<ul class="medium">
+				<li>adds index-like feature</li>
+				<li>many queues support for storing patches</li>
+				<li>allows for patches versioning</li>
+				<li>until patch in queue is commited you can edit, rearrange etc.</li>
+			</ul>
+		</q>
+	</div>
+	
+	<div id="mercurialPros" class="step slide mercurial" data-x="-1150" data-y="1270" data-scale="0.4" data-rotate="180">
+		<q>
+			<ul>
+				<li>commands have less switches - clearer doc</li>
+				<li>tutorials sub-par comparing to the free git-book</li>
+				<li>documetnation and tutorials for plugins / extensions has low quality</li>
+			</ul>
+		</q>
+	</div>
+	
+	<div id="qna" class="step" data-x="600" data-y="1000" data-scale="2">
+		<p>Q & A</p>
+	</div>
+	
+	<div id="thanks" class="step" data-x="700" data-y="2300" data-scale="2">
+		<p>Thanks!</p>
+	</div>
 
-    <div class="step slide" data-x="0" data-y="-1500">
-        <q><i>"Git's CLI sucks!"</i> say Mercurial's power users!
-		<ul>
-			<li>hard to learn</li>
-			<li>harder to master</li>
-			<li>exposes unnecessary internal details</li>
-			<li>no "native" support on Windows</li>
-		</ul>
-		</q>
-    </div>
-
-    <div class="step slide" data-x="0" data-y="-750" data-scale="1">
-        <q>Git has improved a lot since its early days.
-		<ul>
-			<li>fantastic well written free book</li>
-			<li>not that hard to grasp the concepts*!</li>
-			<li>you can use only basic commands</li>
-			<li>works great on Windows now</li>
-		</ul>
-		</q>
-    </div>
-	<div class="step" data-x="-330" data-y="-500" data-scale="0.15">
-		<ul>
-			<li>* still kinda hard to master**</li>
-		</ul>
-	</div>
-	<div class="step" data-x="-383" data-y="-490" data-scale="0.02">
-		<ul>
-			<li>** ok, very hard to become a true ninja</li>
-		</ul>
-	</div>
-	<div class="step" data-x="-360" data-y="-490" data-scale="0.02">
-		<p>Though free Scott Chacon's book (<a href="http://git-scm.com/book">available for free online</a>) is the only thing you need to really learn most of the Git power features. And it is not that long - a free weekend is all that separates you from becoming a Git poweruser.</p>
+	<div id="overview" class="step" data-x="-1500" data-y="-500" data-scale="8">
 	</div>
 	
-	<div class="step slide" data-x="1000" data-y="-1500">
-        <q><i>"Mercurial doesn't give you the power!"</i> say Git's power users!
-		<ul>
-			<li>history is (too) sacred</li>
-			<li>no index</li>
-			<li>poor branching model</li>
-			<li>user is too limited</li>
-		</ul>
-		</q>
-    </div>
-	
-	<div class="step slide" data-x="1000" data-y="-750">
-        <q>In reality, Mercurial has tons of plugins and disabled features.
-		<ul>
-			<li>MQ gives you index (and more)*</li>
-			<li>plugins for rewriting history*</li>
-			<li>enableable power features</li>
-			<li>power is in simplicity</li>
-		</ul>
-		</q>
-    </div>
-	
-	<div class="step" data-x="670" data-y="-490" data-scale="0.15">
-		<ul>
-			<li>* there are so many plugins it is hard to grasp it</li>
-			<li>* not out of the box? what about support?</li>
-			<li>* finding a plugin to match your needs is an extra effort</li>
-		</ul>
-	</div>
-	
-	<div id="overview" class="step" data-scale="6">
+	<div id="impressjsslide" class="step" data-x="1500" data-y="8000" data-scale="50">
+		<p id="madewith">Made with <div id="impressjslink"><a href="https://github.com/bartaz/impress.js">impress.js!</a></div></p>
+		<p class="kudos">Kudos to <a href="http://bartaz.github.com/">bartaz (Bartek Szopka)</a> for creating it!</p>
 	</div>
 </div>
 
 <script src="impress.js"></script>
-<script>impress().init();</script>
+<script>
+	impress().init();
+</script>
 </body>
 </html>

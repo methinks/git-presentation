@@ -49,6 +49,16 @@ q:before, q:after {
     content: none;
 }
 
+code {
+	display: block;
+	border: 1px solid #999;
+	background-color: #eee;
+	font-family:Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New, monospace;
+	font-size: 50%;
+	margin: 20px 0;
+	padding: 10px;
+}
+
 table {
     border-collapse: collapse;
     border-spacing: 0;
@@ -92,6 +102,16 @@ a:focus {
     text-shadow: -1px -1px 2px rgba(100,100,100,0.5);
 }
 
+ul.small {
+	font-size: 70%;
+	line-height: 1.2em;
+}
+
+ul.medium {
+	font-size: 90%;
+	line-height: 1.4em;
+}
+
 /* presentation steps */
 .step {
     position: relative;
@@ -127,7 +147,7 @@ a:focus {
     These 'slide' step styles were heavily inspired by HTML5 Slides:
     http://html5slides.googlecode.com/svn/trunk/styles.css
 */
-.slide {
+.slide, .imgslide {
     display: block;
 
     width: 950px;
@@ -145,10 +165,11 @@ a:focus {
     font-size: 30px;
     line-height: 36px;
     letter-spacing: -1px;
-	background: url("apilia_logo.png") no-repeat 8% 7% #dedede;
+	background: url("roche_logo.png") no-repeat 8% 7% #ededed;
+	background-size: 17%;
 }
 
-.slide q {
+.slide q, .imgslide q {
     display: block;
     font-size: 50px;
     line-height: 72px;
@@ -160,11 +181,178 @@ a:focus {
     white-space: nowrap;
 }
 
-#overview { display: none }
+.imgslide img {
+	max-width: 100%;
+}
+.imgslide div {
+	text-align: center;
+	margin-top: 40px;
+}
+.audioclip {
+	display:none;
+}
 
-.impress-on-overview .step, .impress-on-start .step  {
+#start {
+	width: 1280px;
+}
+#start img {
+	width: 100%;
+}
+
+#start.past img, #start.future img{
+	display: none;
+}
+
+.impress-on-start #intro.slide, .impress-on-intro #intro.slide {
+	background-image: none;
+}
+
+.impress-on-start #start img, .impress-on-intro #start img {
+	display: inline;
+}
+
+.impress-on-intro #start {
+	opacity: 1;
+}
+
+#intro q {
+	margin-top: 140px;
+}
+
+.wideslide {
+	width: 1050px;
+}
+
+#svngitmercurial {
+	width: 1300px;
+	font-size: 90pt;
+}
+
+#commandsComparison {
+	font-size: 26px;
+	font-family: Helvetica, Arial, sans-serif;
+}
+
+#commandsComparison th {
+	text-align: left;
+}
+#commandsComparison p {
+	font-size: 16px;
+	margin-top: 60px;
+}
+
+#git {
+	width: 1200px;
+	font-size: 80pt;
+}
+
+#just-graph, #graph-w-tree {
+	display:none;
+}
+.impress-on-just-graph #just-graph {
+	display: block;
+}
+.impress-on-just-graph #just-graph img{
+	position: relative;
+	top: 355px;
+}
+#just-graph.present img {
+	-webkit-transition: 0.5s;
+    -moz-transition:    0.5s;
+    -ms-transition:     0.5s;
+    -o-transition:      0.5s;
+    transition:         0.5s;
+	
+	-webkit-transform: translateY(-255px);
+    -moz-transform:    translateY(-255px);
+    -ms-transform:     translateY(-255px);
+    -o-transform:      translateY(-255px);
+    transform:         translateY(-255px);
+	
+	-webkit-transition-delay: 0.2s;
+    -moz-transition-delay:    0.2s;
+    -ms-transition-delay:     0.2s;
+    -o-transition-delay:      0.2s;
+    transition-delay:         0.2s;
+}
+.impress-on-graph-w-tree #graph-w-tree {
+	display: block;
+}
+#graph-w-tree img {
+	position: relative;
+	top: 100px;
+}
+#fullTreeWithRefs {
+	display: none;
+}
+.gitimg img {
+	height: 85%;
+}
+#git1, #git2, #git3, #git4{
+	display:none;
+}
+#git1.future,#git1.active, #git2.active, #git3.active, #git4.active, #git4.past {
+	display:block;
+}
+.reset img {
+	height: 70%;
+}
+#reset1, #reset2, #reset3, #reset4, #reset5, #reset6, #reset7{
+	display:none;
+}
+#reset1.future,#reset1.active, #reset2.active, #reset3.active, #reset4.active, #reset4.past, #reset5.future, #reset5.active, #reset6.active, #reset7.past, #reset7.active {
+	display:block;
+}
+.impress-on-fullTreeWithRefs #fullTreeWithRefs {
+	display: block;
+}
+
+#mercurial {
+	width: 1200px;
+	font-size: 80pt;
+}
+
+.impress-on-mercurialPros .git, .impress-on-mercurialPros .svn, .impress-on-mercurialPros .hideable {
+	display: none;
+}
+#qna, #thanks {
+	text-align: center;
+	font-size: 180pt;
+}
+
+.impress-on-overview .step, .impress-on-start .step, .impress-on-wtf1 .wtf, .impress-on-wtf2 .wtf {
     opacity: 1;
     cursor: pointer;
+}
+
+/* hiding on larger scope for optimisation */
+.impress-on-overview .hideable, .impress-on-impressjsslide .slide, .impress-on-impressjsslide .imgslide, .impress-on-impressjsslide .hideable {
+	display: none;
+}
+#overview.future {
+	display: none;
+}
+
+#impressjsslide {
+	display: none;
+}
+#impressjsslide.active {
+	display: block;
+}
+#impressjsslide p {
+	margin-left: 30px;
+}
+#madewith {
+	line-height: 0.5em;
+}
+#impressjslink {
+	font-size: 150pt;
+}
+#impressjslink a {
+	background-color: transparent;
+}
+p.kudos {
+	font-size: 18pt;
 }
 
 /* And as the last thing there is a workaround for quite strange bug. */
